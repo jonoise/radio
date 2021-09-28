@@ -14,3 +14,20 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.videoStyle {
+  min-width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+.videoStyle {
+  min-width:  400%;
+}
+}
+
+
+@media only screen and (max-width: 400px) {
+.videoStyle {
+  min-width:  370%;
+}
+}
