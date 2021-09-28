@@ -21,7 +21,7 @@ const NAV_ITEMS = ['']
 const Navbar = () => {
   const router = useRouter()
   const { isOpen, onToggle } = useDisclosure()
-  const [blackBg, setBlackBg] = useState(false)
+
   const [message, setMessage] = useState(null)
   useEffect(() => {
     // Check query for errors
@@ -61,7 +61,7 @@ const Navbar = () => {
           py="2"
           w="full"
           transition=".4s all"
-          bg={blackBg ? '#f5c000' : null}
+          // bg={blackBg ? '#f5c000' : null}
         >
           <Flex justify="space-between" w="full" align="center">
             <Logo />
@@ -73,6 +73,8 @@ const Navbar = () => {
               <IconButton
                 color="white"
                 onClick={onToggle}
+                bg="none"
+                className="disableFocus"
                 icon={
                   isOpen ? (
                     <CloseIcon w={3} h={3} />
@@ -80,13 +82,12 @@ const Navbar = () => {
                     <HamburgerIcon w={5} h={5} />
                   )
                 }
-                variant={'ghost'}
                 aria-label={'Toggle Navigation'}
               />
             </Flex>
-            <HStack spacing="3">
+            {/* <HStack spacing="3">
               <Menubar NAV_ITEMS={NAV_ITEMS} blackBg={blackBg} />
-            </HStack>
+            </HStack> */}
             <Flex
               position="absolute"
               top="60px"

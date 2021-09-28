@@ -19,6 +19,18 @@ a {
   min-width: 100%;
 }
 
+/* ************************ */
+/* CHAKRA UI REMOVE OUTLINE */
+/* ************************ */
+
+.disableFocus:focus {
+  box-shadow: none !important;
+}
+
+.disableFocus[data-focus] {
+  box-shadow: none !important;
+}
+
 @media only screen and (max-width: 800px) {
 .videoStyle {
   min-width:  400%;
