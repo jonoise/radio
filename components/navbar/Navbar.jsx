@@ -14,11 +14,11 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { handleQueryMessage } from './handleMessage'
-import { FaTimes } from 'react-icons/fa'
+import { FaTimes, FaBookmark } from 'react-icons/fa'
 
 const NAV_ITEMS = ['']
 
-const Navbar = () => {
+const Navbar = ({ streamRef }) => {
   const router = useRouter()
   const { isOpen, onToggle } = useDisclosure()
 
@@ -26,7 +26,7 @@ const Navbar = () => {
   useEffect(() => {
     // Check query for errors
     handleQueryMessage(router.asPath, setMessage)
-  }, [setMessage])
+  }, [router.asPath, setMessage])
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -40,7 +40,12 @@ const Navbar = () => {
         }
       }
     })
-  }, [])
+  }, [isOpen])
+
+  const playStream = () => {
+    streamRef.current.volume = 0.2
+    streamRef.current.play()
+  }
 
   return (
     <>
@@ -65,7 +70,7 @@ const Navbar = () => {
         >
           <Flex justify="space-between" w="full" align="center">
             <Logo />
-            <Flex
+            {/* <Flex
               flex={{ base: 'full', lg: 'auto' }}
               ml={{ base: -2 }}
               display={{ base: 'flex', lg: 'none' }}
@@ -84,10 +89,26 @@ const Navbar = () => {
                 }
                 aria-label={'Toggle Navigation'}
               />
-            </Flex>
+            </Flex> */}
             {/* <HStack spacing="3">
               <Menubar NAV_ITEMS={NAV_ITEMS} blackBg={blackBg} />
             </HStack> */}
+
+            <Flex
+              w="6rem"
+              h="2rem"
+              bg="blue.600"
+              justify="center"
+              align="center"
+              rounded="sm"
+              color="white"
+              cursor="pointer"
+              onClick={playStream}
+            >
+              <Text fontSize="12px" fontWeight="black">
+                Escuchar
+              </Text>
+            </Flex>
             <Flex
               position="absolute"
               top="60px"
@@ -101,9 +122,9 @@ const Navbar = () => {
               justify="center"
               display={isOpen ? 'block' : 'none'}
             >
-              <Collapse in={isOpen} animateOpacity>
+              {/* <Collapse in={isOpen} animateOpacity>
                 <MobileNav NAV_ITEMS={NAV_ITEMS} />
-              </Collapse>
+              </Collapse> */}
             </Flex>
           </Flex>
         </Flex>
@@ -117,7 +138,12 @@ export default Navbar
 const Logo = () => {
   return (
     <Box w={{ base: '220px', lg: '350px' }} my="2">
-      <Image src="/images/logo-radio.png" width="100%" height="15px" />
+      <Image
+        src="/images/logo-radio.png"
+        width="100%"
+        height="15px"
+        alt="Radio logo"
+      />
       {/* <Image src="https://user-images.githubusercontent.com/71573508/130567876-96301de4-4511-4ffb-8c07-cac75cb8c027.png" /> */}
     </Box>
   )

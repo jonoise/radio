@@ -5,16 +5,14 @@ import Navbar from '../components/navbar/Navbar'
 import Footer from '../components/footer/Index'
 import Head from 'next/head'
 import { useRef } from 'react'
+import Loading from '../components/loading'
 const MotionFlex = motion(Flex)
 export default function Home() {
   const delay = useDelay(2000)
   const innerColor = '151c49'
   const outerColor = '000001'
   const streamRef = useRef()
-  const playStream = () => {
-    streamRef.current.volume = 0.2
-    streamRef.current.play()
-  }
+
   return (
     <>
       <Head>
@@ -25,10 +23,10 @@ export default function Home() {
         ></link>
       </Head>
       {delay ? (
-        'Loading...'
+        <Loading />
       ) : (
         <>
-          <Navbar />
+          <Navbar streamRef={streamRef} />
           <MotionFlex
             w="full"
             h="100vh"
@@ -52,7 +50,6 @@ export default function Home() {
               <Text color="#fee" fontFamily="Orbitron" fontWeight="900">
                 Estamos en vivo
               </Text>
-              <Button onClick={playStream}>Escuchar</Button>
             </VStack>
             <Flex position="absolute" w="full" h="100vh" zIndex="5"></Flex>
             <video className="videoStyle" autoPlay="autoplay" loop="loop" muted>
