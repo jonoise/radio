@@ -15,10 +15,14 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { handleQueryMessage } from './handleMessage'
 import { FaTimes } from 'react-icons/fa'
+import WeAreLive from './weAreLive'
 
 const NAV_ITEMS = ['']
 
 const Navbar = ({ streamRef }) => {
+  // weAreLive component prop
+  const [showLoading, setShowLoading] = useState(false)
+
   const router = useRouter()
   const { isOpen, onToggle } = useDisclosure()
 
@@ -45,6 +49,7 @@ const Navbar = ({ streamRef }) => {
   const playStream = () => {
     streamRef.current.volume = 0.2
     streamRef.current.play()
+    setShowLoading(true)
   }
 
   return (
@@ -90,26 +95,27 @@ const Navbar = ({ streamRef }) => {
                 aria-label={'Toggle Navigation'}
               />
             </Flex> */}
-            {/* <HStack spacing="3">
-              <Menubar NAV_ITEMS={NAV_ITEMS} blackBg={blackBg} />
-            </HStack> */}
+            <HStack spacing="3">
+              {/* <Menubar NAV_ITEMS={NAV_ITEMS} blackBg={blackBg} /> */}
+              {showLoading && <WeAreLive showLoading={showLoading} />}
+              <Flex
+                w="6rem"
+                h="2rem"
+                bg="blue.600"
+                justify="center"
+                align="center"
+                rounded="sm"
+                color="white"
+                cursor="pointer"
+                onClick={playStream}
+              >
+                <Text fontSize="12px" fontWeight="black">
+                  Escuchar
+                </Text>
+              </Flex>
+            </HStack>
 
-            <Flex
-              w="6rem"
-              h="2rem"
-              bg="blue.600"
-              justify="center"
-              align="center"
-              rounded="sm"
-              color="white"
-              cursor="pointer"
-              onClick={playStream}
-            >
-              <Text fontSize="12px" fontWeight="black">
-                Escuchar
-              </Text>
-            </Flex>
-            <Flex
+            {/* <Flex
               position="absolute"
               top="60px"
               left="0"
@@ -122,10 +128,10 @@ const Navbar = ({ streamRef }) => {
               justify="center"
               display={isOpen ? 'block' : 'none'}
             >
-              {/* <Collapse in={isOpen} animateOpacity>
+              <Collapse in={isOpen} animateOpacity>
                 <MobileNav NAV_ITEMS={NAV_ITEMS} />
-              </Collapse> */}
-            </Flex>
+              </Collapse>
+            </Flex> */}
           </Flex>
         </Flex>
       </Flex>
