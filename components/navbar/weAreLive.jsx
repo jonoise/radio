@@ -66,12 +66,7 @@ const Live = () => {
         },
       }}
     >
-      <Image
-        src="/images/live.svg"
-        alt="We Are Live"
-        width="50px"
-        height="20px"
-      />
+      <Image src="/images/live.png" alt="Live" width="50px" height="20px" />
     </MotionFlex>
   )
 }
