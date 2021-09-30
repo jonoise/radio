@@ -69,7 +69,11 @@ const Live = () => {
         },
       }}
     >
-      <Text color="white" fontWeight="semibold" fontSize="12px">
+      <Text
+        color="white"
+        fontWeight="semibold"
+        fontSize={{ base: '8px', lg: '12px' }}
+      >
         En vivo
       </Text>
     </MotionFlex>
