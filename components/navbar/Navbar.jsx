@@ -14,7 +14,7 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { handleQueryMessage } from './handleMessage'
-import { FaTimes, FaBookmark } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 
 const NAV_ITEMS = ['']
 
