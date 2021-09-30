@@ -53,7 +53,7 @@ const Live = () => {
   return (
     <MotionFlex
       h="20px"
-      p="2"
+      p={{ base: 1, lg: 2 }}
       justify="center"
       align="center"
       bg="red"
@@ -70,6 +70,7 @@ const Live = () => {
       }}
     >
       <Text
+        whiteSpace="nowrap"
         color="white"
         fontWeight="semibold"
         fontSize={{ base: '8px', lg: '12px' }}
